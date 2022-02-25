@@ -2,7 +2,7 @@
 # Daniel Shiffman
 # http://natureofcode.com
 
-# Seeking "vehicle" follows the mouse position
+# Seeking "vehicle v" follows the food f position
 
 
 from Vehicle import Vehicle
@@ -24,21 +24,24 @@ def setup():
 
 def draw():
     background(255)
-    mouse = PVector(mouseX, mouseY)
+    #Print the message on the screen
     message = "Comida: " + str(count)
     textSize(20);
     text(message, 5, 30); 
     fill(0, 408, 612);
 
+    #display the food and the vehicle
     f.display()
     v.arrive(f.position)
     v.run()
     
+    #Check if the vehicle is on the same position as the f food
     diff_x = f.position.x - v.position.x
     diff_y = f.position.y - v.position.y
     if diff_x < 0.5 and diff_y < 0.5:
        x = random(1, 10)
        y = random(1,10)
+       #Update food position and increment the food counter by 1
        f.update_pos(x,y)
        f.display()
        sum_count()
